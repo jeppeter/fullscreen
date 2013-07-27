@@ -11,7 +11,7 @@ extern "C" {
 
 #define  DEBUG_INFO(fmt,...) DebugOutString(__FILE__,__LINE__,fmt,__VA_ARGS__)
 
-void DebugOutString(const char* file,int lineno,const char* fmt,...);
+extern "C" void DebugOutString(const char* file,int lineno,const char* fmt,...);
 
 #ifdef __cplusplus
 }

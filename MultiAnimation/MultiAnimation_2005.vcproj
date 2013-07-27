@@ -190,7 +190,7 @@
 			IntermediateDirectory="Release"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
-			CharacterSet="1"
+			CharacterSet="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -510,6 +510,14 @@
 			</File>
 			<File
 				RelativePath="..\..\Common\DXUTsound.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Common\output_debug.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Common\output_debug.h"
 				>
 			</File>
 		</Filter>

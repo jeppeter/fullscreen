@@ -12,7 +12,7 @@
 #include "MultiAnimation.h"
 #include "Tiny.h"
 #pragma warning(default: 4995)
-
+#include "output_debug.h"
 
 using namespace std;
 
@@ -112,6 +112,7 @@ INT WINAPI WinMain( HINSTANCE, HINSTANCE, LPSTR, int )
     // Show the cursor and clip it when in full screen
     DXUTSetCursorSettings( true, true );
 
+	DEBUG_INFO("\n");
     InitApp();
 
     // Initialize DXUT and create the desired Win32 window and Direct3D

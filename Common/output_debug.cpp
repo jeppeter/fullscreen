@@ -4,7 +4,7 @@
 
 
 
-void DebugOutString(const char* file,int lineno,const char* fmt,...)
+extern "C" void DebugOutString(const char* file,int lineno,const char* fmt,...)
 {
 	char* pFmt=NULL;
 	char* pLine=NULL;
