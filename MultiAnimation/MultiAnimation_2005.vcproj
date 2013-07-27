@@ -520,6 +520,14 @@
 				RelativePath="..\Common\output_debug.h"
 				>
 			</File>
+			<File
+				RelativePath="..\Common\scrcap.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Common\scrcap.h"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath=".\AllocHierarchy.cpp"
