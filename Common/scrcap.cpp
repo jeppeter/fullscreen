@@ -19,6 +19,8 @@ extern "C" int  CaptureFile(IDirect3D9* pD3D,IDirect3DDevice9* pDevice,const cha
         goto fail;
     }
 
+	DEBUG_INFO("\n");
+
     hr = pD3D->GetAdapterDisplayMode(D3DADAPTER_DEFAULT, &D3DMode);
     if (FAILED(hr))
     {

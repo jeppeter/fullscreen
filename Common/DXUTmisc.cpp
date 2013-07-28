@@ -9,6 +9,7 @@
 #define DXUT_GAMEPAD_TRIGGER_THRESHOLD      30
 #undef min // use __min instead
 #undef max // use __max instead
+#include "output_debug.h"
 
 //--------------------------------------------------------------------------------------
 // Global/Static Members
@@ -2977,8 +2978,17 @@ static bool DXUT_EnsureD3DAPIs( void )
 
 IDirect3D9 * WINAPI DXUT_Dynamic_Direct3DCreate9(UINT SDKVersion) 
 {
+	IDirect3D9* pD3D=NULL;
     if( DXUT_EnsureD3DAPIs() && s_DynamicDirect3DCreate9 != NULL )
-        return s_DynamicDirect3DCreate9( SDKVersion );
+	{
+        pD3D= s_DynamicDirect3DCreate9( SDKVersion );
+		if (pD3D)
+		{
+			DEBUG_INFO("sizeof(*pD3D) %d\n",sizeof(*pD3D));
+			DEBUG_BUFFER(pD3D,sizeof(*pD3D));
+		}
+		return pD3D;
+	}
     else
         return NULL;
 }
@@ -3214,6 +3224,8 @@ IDirect3DDevice9* DXUTCreateRefDevice( HWND hWnd, bool bNullRef )
     if( NULL == pD3D )
         return NULL;
 
+	DEBUG_BUFFER(pD3D,sizeof(*pD3D));
+
     D3DDISPLAYMODE Mode;
     pD3D->GetAdapterDisplayMode(0, &Mode);
 
@@ -3230,6 +3242,10 @@ IDirect3DDevice9* DXUTCreateRefDevice( HWND hWnd, bool bNullRef )
     IDirect3DDevice9* pd3dDevice = NULL;
     hr = pD3D->CreateDevice( D3DADAPTER_DEFAULT, bNullRef ? D3DDEVTYPE_NULLREF : D3DDEVTYPE_REF,
                              hWnd, D3DCREATE_HARDWARE_VERTEXPROCESSING, &pp, &pd3dDevice );
+	if (pd3dDevice)
+	{
+		DEBUG_BUFFER(pd3dDevice,sizeof(*pd3dDevice));
+	}
 
     SAFE_RELEASE( pD3D );
     return pd3dDevice;
