@@ -78,7 +78,11 @@ extern "C" void DebugBuffer(const char* file,int lineno,unsigned char* pBuffer,i
         }
         if ((i%16)==0)
         {
-            ret = _snprintf_s(pCur,fmtlen-formedlen,fmtlen-formedlen-1,"\n[0x%08x]\t",i);
+        	ret = _snprintf_s(pCur,fmtlen-formedlen,fmtlen-formedlen-1,"\n");
+            InnerDebug(pLine);
+            pCur = pLine;
+            formedlen = 0;
+            ret = _snprintf_s(pCur,fmtlen-formedlen,fmtlen-formedlen-1,"[0x%08x]\t",i);
             pCur += ret;
             formedlen += ret;
         }

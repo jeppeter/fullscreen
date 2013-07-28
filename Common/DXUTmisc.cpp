@@ -3244,6 +3244,7 @@ IDirect3DDevice9* DXUTCreateRefDevice( HWND hWnd, bool bNullRef )
                              hWnd, D3DCREATE_HARDWARE_VERTEXPROCESSING, &pp, &pd3dDevice );
 	if (pd3dDevice)
 	{
+		DEBUG_INFO("\n");
 		DEBUG_BUFFER(pd3dDevice,sizeof(*pd3dDevice));
 	}
 
