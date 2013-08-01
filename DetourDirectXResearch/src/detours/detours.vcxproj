@@ -80,6 +80,7 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\common\output_debug.cpp" />
     <ClCompile Include="creatwth.cpp" />
     <ClCompile Include="detoured.cpp" />
     <ClCompile Include="detours.cpp" />
@@ -88,6 +89,7 @@
     <ClCompile Include="modules.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\common\output_debug.h" />
     <ClInclude Include="detoured.h" />
     <ClInclude Include="detours.h" />
   </ItemGroup>

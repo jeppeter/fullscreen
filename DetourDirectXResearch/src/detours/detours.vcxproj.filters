@@ -33,12 +33,18 @@
     <ClCompile Include="modules.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\common\output_debug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="detoured.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="detours.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\output_debug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
