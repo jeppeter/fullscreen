@@ -1,5 +1,6 @@
 #include "..\\scwlapi\\commdef-int.h"
 #include "..\\detours\\detours.h"
+#include "..\\common\\output_debug.h"
 
 
 int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow )
@@ -10,7 +11,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 
 	BOOL ret = 
 	DetourCreateProcessWithDllW(
-		L"Blobs.exe",
+		L"z:\\Blobs.exe",
 		NULL,
 		NULL,
 		NULL,
@@ -23,6 +24,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 		NULL,
 		"blob.dll",
 		NULL);
+	DEBUG_INFO("\n");
 
 	if(!ret)
 	{

@@ -21,6 +21,7 @@ typedef DWORD DWORD_PTR;
 #define DETOURS_INTERNAL
 
 #include "detours.h"
+#include "..\\common\\output_debug.h"
 
 #define IMPORT_DIRECTORY OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_IMPORT]
 #define BOUND_DIRECTORY OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_BOUND_IMPORT]
@@ -384,6 +385,7 @@ static BOOL UpdateImports(HANDLE hProcess, LPCSTR *plpDlls, DWORD nDlls)
 
     if (!ReadProcessMemory(hProcess, pbModule, &idh, sizeof(idh), NULL)) {
         DETOUR_TRACE(("ReadProcessMemory(idh) failed: %d\n", GetLastError()));
+		DEBUG_INFO("ReadProcessMemory(idh) failed: %d\n", GetLastError());
 
       finish:
         if (pbNew != NULL) {
@@ -404,6 +406,7 @@ static BOOL UpdateImports(HANDLE hProcess, LPCSTR *plpDlls, DWORD nDlls)
 
     if (!ReadProcessMemory(hProcess, pbModule + idh.e_lfanew, &inh, sizeof(inh), NULL)) {
         DETOUR_TRACE(("ReadProcessMemory(inh) failed: %d\n", GetLastError()));
+		DEBUG_INFO("ReadProcessMemory(inh) failed: %d\n", GetLastError());
         goto finish;
     }
     CopyMemory(&der.inh, &inh, sizeof(inh));
@@ -439,6 +442,7 @@ static BOOL UpdateImports(HANDLE hProcess, LPCSTR *plpDlls, DWORD nDlls)
         }
 
         DETOUR_TRACE(("ish[%d] : va=%p sr=%d\n", i, ish.VirtualAddress, ish.SizeOfRawData));
+		DEBUG_INFO("ish[%d] : va=%p sr=%d\n", i, ish.VirtualAddress, ish.SizeOfRawData);
 
         // If the file didn't have an IAT_DIRECTORY, we create one...
         if (inh.IAT_DIRECTORY.VirtualAddress == 0 &&
@@ -761,9 +765,11 @@ BOOL WINAPI DetourCreateProcessWithDllW(LPCWSTR lpApplicationName,
     DWORD nDlls = 0;
     if (lpDetouredDllFullName != NULL) {
         rlpDlls[nDlls++] = lpDetouredDllFullName;
+		DEBUG_INFO("lpDetouredDllFullName %s\n",lpDetouredDllFullName);
     }
     if (lpDllName != NULL) {
         rlpDlls[nDlls++] = lpDllName;
+		DEBUG_INFO("lpDllName %s\n",lpDllName);
     }
 
     if (!UpdateImports(pi.hProcess, rlpDlls, nDlls)) {
