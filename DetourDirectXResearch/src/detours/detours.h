@@ -12,7 +12,8 @@
 #define _DETOURS_H_
 
 #define DETOURS_VERSION     20100   // 2.1.0
-
+
+#include "..\\common\\output_debug.h"
 //////////////////////////////////////////////////////////////////////////////
 //
 
@@ -413,12 +414,12 @@ PDETOUR_SYM_INFO DetourLoadDbgHelp(VOID);
 
 #ifndef DETOUR_TRACE
 #if DETOUR_DEBUG
-#define DETOUR_TRACE(x) printf x
+#define DETOUR_TRACE(x) DEBUG_INFO x
 #define DETOUR_BREAK()  DebugBreak()
 #include <stdio.h>
 #include <limits.h>
 #else
-#define DETOUR_TRACE(x)
+#define DETOUR_TRACE(x)  DEBUG_INFO x
 #define DETOUR_BREAK()
 #endif
 #endif
